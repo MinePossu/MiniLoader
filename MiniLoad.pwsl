@@ -1,0 +1,51 @@
+clear
+set/"info","MiniLoader"/"input",""
+print/"Welcome to ",info,\n
+print/"This is just a loader.",\n
+set/"active",1
+while/[active == 1]
+	read/"$","input"
+    print/"$",input,\n
+	if/["boot" == input]
+        read/"Path $","input"
+        set/"active",0
+        run/input
+    elseif/["launch" == input]
+        read/"Path $","input"
+        run/input/"wait"
+    elseif/["clear" == input]
+        clear
+    elseif/["location" == input]
+        getlocation/"loc"
+        print/loc,\n
+    elseif/["pwd" == input]
+        pwd/"loc"
+        print/loc,\n
+    elseif/["cd" == input]
+        read/"cd?","in"
+        cd/in
+    elseif/["ls" == input]
+        pwd/"gfc"
+        ls/gfc/"data"
+        getlistlength/"data"/"len"
+        set/"count",0
+        repeat/len
+            calc/"count=count+1"
+            getitem/"data",count/"out"
+            print/out," "
+        endloop
+        print/\n
+    elseif/["out" == input]
+        read/"to output $","input"
+        getfile/input/"data"
+        getlistlength/"data"/"len"
+        set/"count",0
+        repeat/len
+            calc/"count=count+1"
+            getitem/"data",count/"out"
+            print/out,\n
+        endloop
+    elseif/["help" == input]
+        print/"boot",\n,"launch",\n,"clear",\n,"location",\n,"pwd",\n,"cd",\n,"ls",\n,"out",\n,"help",\n,"That is all the help available.",\n
+	endif
+endloop

@@ -1,0 +1,2 @@
+print/"Loading Boot Loader",\n
+run/"/init.smc"/"bg"
